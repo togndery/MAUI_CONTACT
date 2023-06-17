@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ContactApp.View.ContactPage"
+             Title="Contact">
+
+
+    <Grid Padding="25" RowDefinitions="50,*,50"
+          ColumnDefinitions="*">
+        <SearchBar Grid.Row="0"
+                   Placeholder="Search Item"
+                   TextChanged="SearchBar_TextChanged"
+                   SearchButtonPressed="SearchBar_SearchButtonPressed"
+                   Grid.Column="0"
+                   Grid.ColumnSpan="2"></SearchBar>
+        <ListView
+            Grid.Row="1"
+            Grid.Column="0"
+        x:Name="listContact"
+        Background="Transparent"
+        SeparatorColor="Gold"
+        RowHeight="65"
+        ItemSelected="listContact_ItemSelected"
+        ItemTapped="listContact_ItemTapped">
+
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextCell
+                    Text="{Binding Path=Name}"
+                     Detail="{Binding Email}">
+                        <TextCell.ContextActions>
+                            <MenuItem Text="Delete"
+                                              x:Name="mentDelete"
+                                              Clicked="mentDelete_Clicked"
+                                              CommandParameter="{Binding .}" />
+
+                            <MenuItem x:Name="aboutMenu"
+                                      Clicked="aboutMenu_Clicked"
+                                      Text="About"/>
+
+                        </TextCell.ContextActions>
+                    </TextCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+
+        </ListView>
+
+        <Button  x:Name="btnAdd"
+                Text="Add Contact"
+                Grid.Column="0"
+                Grid.Row="2"
+                Clicked="btnAdd_Clicked"/>
+    </Grid>
+        
+</ContentPage>
